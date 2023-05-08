@@ -1,3 +1,8 @@
+/**
+ * Require the following softwares in the path
+ * 1. https://github.com/jpassing/elevate
+ * 2. https://nssm.cc/download
+ */
 
 const { spawnSync, exec } = require('child_process');
 const path = require('path');
@@ -13,7 +18,7 @@ function normalizePath(value) {
 
 
 async function executeNssmCommand(args) {
-  const result = spawnSync('nssm', args, { encoding: 'utf8' });
+  const result = spawnSync('elevate', ['nssm', ...args], { encoding: 'utf8' });
   if (result.status !== 0) {
     const errMessage = `Failed to execute command: ${result.stderr}`;
     console.error(errMessage);
